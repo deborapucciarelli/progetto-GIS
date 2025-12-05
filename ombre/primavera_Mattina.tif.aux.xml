@@ -1,0 +1,13 @@
+<PAMDataset>
+  <PAMRasterBand band="1">
+    <Description>primavera_Mattino@PERMANENT</Description>
+    <Metadata>
+      <MDI key="STATISTICS_APPROXIMATE">YES</MDI>
+      <MDI key="STATISTICS_MINIMUM">0</MDI>
+      <MDI key="STATISTICS_MAXIMUM">452.74234008789</MDI>
+      <MDI key="STATISTICS_MEAN">351.40139813427</MDI>
+      <MDI key="STATISTICS_STDDEV">188.08179691787</MDI>
+      <MDI key="STATISTICS_VALID_PERCENT">60.46</MDI>
+    </Metadata>
+  </PAMRasterBand>
+</PAMDataset>

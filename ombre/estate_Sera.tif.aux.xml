@@ -1,0 +1,13 @@
+<PAMDataset>
+  <PAMRasterBand band="1">
+    <Description>estate_Sera@PERMANENT</Description>
+    <Metadata>
+      <MDI key="STATISTICS_APPROXIMATE">YES</MDI>
+      <MDI key="STATISTICS_MINIMUM">0</MDI>
+      <MDI key="STATISTICS_MAXIMUM">328.51129150391</MDI>
+      <MDI key="STATISTICS_MEAN">241.49024777433</MDI>
+      <MDI key="STATISTICS_STDDEV">144.514693071</MDI>
+      <MDI key="STATISTICS_VALID_PERCENT">60.46</MDI>
+    </Metadata>
+  </PAMRasterBand>
+</PAMDataset>

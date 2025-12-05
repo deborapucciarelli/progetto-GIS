@@ -1,0 +1,394 @@
+{
+  "CAMERA": "ORTHO",
+  "KEYFRAMES": {
+    "camera": {
+      "groups": []
+    },
+    "layers": {
+      "Area_Unisa_Poligono_8652b7dc_5b26_426d_92dd_cae7661997ce": {
+        "enabled": true,
+        "groups": []
+      },
+      "Area_Unisa_Poligono_f22d326c_3a7d_439f_a636_49c91dd20796": {
+        "enabled": true,
+        "groups": []
+      },
+      "campania_145_D40761478_0101_DSMLast_83c51b1d_6174_43df_a00c_700e63489e1b": {
+        "enabled": true,
+        "groups": []
+      },
+      "campania_145_D40761479_0101_DSMLast_dcaa610d_6249_4d3d_9d82_c5e7efdef20c": {
+        "enabled": true,
+        "groups": []
+      },
+      "campania_145_D40771478_0101_DSMLast_4cd907f0_925a_4a25_be15_682fbc4dc76c": {
+        "enabled": true,
+        "groups": []
+      },
+      "campania_145_D40771479_0101_DSMLast_6d2e9ba8_30a7_4986_bb51_5b49bd48eecd": {
+        "enabled": true,
+        "groups": []
+      },
+      "edifici_clip_8e99e098_ee05_4e7d_bb59_9701c559814f": {
+        "enabled": true,
+        "groups": []
+      },
+      "export_033c595d_98fb_4472_8b4f_465595d74bda": {
+        "enabled": true,
+        "groups": []
+      },
+      "export_0b3168a8_3403_44b5_a3de_193f1a3cc16b": {
+        "enabled": true,
+        "groups": []
+      },
+      "export_5a2ac075_b381_41e2_9157_b0b9e67ecc4e": {
+        "enabled": true,
+        "groups": []
+      },
+      "fp:3c9120d6": {
+        "enabled": true,
+        "groups": []
+      },
+      "fusione_dsmLast_2dc1dcd5_283a_4e70_b960_7c2b9be2067f": {
+        "enabled": true,
+        "groups": []
+      },
+      "strade_clip_239a37c1_33f4_4039_8061_b9f06dd199b4": {
+        "enabled": true,
+        "groups": []
+      }
+    },
+    "repeat": false
+  },
+  "LAYERS": [
+    {
+      "geomType": 2,
+      "layerId": "strade_clip_239a37c1_33f4_4039_8061_b9f06dd199b4",
+      "name": "strade_clip",
+      "properties": {
+        "checkBox_Clickable": true,
+        "checkBox_Clip": true,
+        "checkBox_ExportAttrs": false,
+        "checkBox_Visible": true,
+        "comboBox_ObjectType": "Line",
+        "comboBox_altitudeMode": null,
+        "comboEdit_Color": {
+          "comboData": 1,
+          "comboText": "Feature style",
+          "editText": "",
+          "type": 2
+        },
+        "comboEdit_Color2": {
+          "comboData": null,
+          "comboText": "None",
+          "editText": "",
+          "type": 7
+        },
+        "comboEdit_FilePath": {},
+        "comboEdit_Opacity": {
+          "comboData": 1,
+          "comboText": "Feature style",
+          "editText": "",
+          "type": 5
+        },
+        "comboEdit_altitude2": {},
+        "fieldExpressionWidget_altitude": "0",
+        "geomWidget0": {},
+        "geomWidget1": {},
+        "geomWidget2": {},
+        "geomWidget3": {},
+        "geomWidget4": {},
+        "lineEdit_Name": "",
+        "mtlWidget0": {
+          "checkBox": false,
+          "type": 9
+        },
+        "mtlWidget1": {},
+        "radioButton_Expression": true,
+        "radioButton_IntersectingFeatures": true
+      },
+      "visible": false
+    },
+    {
+      "geomType": 3,
+      "layerId": "edifici_clip_8e99e098_ee05_4e7d_bb59_9701c559814f",
+      "name": "edifici_clip",
+      "properties": {
+        "checkBox_Clickable": true,
+        "checkBox_Clip": true,
+        "checkBox_ExportAttrs": false,
+        "checkBox_Label": false,
+        "checkBox_Outline": true,
+        "checkBox_Underline": false,
+        "checkBox_Visible": true,
+        "colorButton_BgColor": [
+          255,
+          255,
+          255,
+          176
+        ],
+        "colorButton_ConnColor": [
+          192,
+          192,
+          208,
+          255
+        ],
+        "colorButton_Label": [
+          0,
+          0,
+          0,
+          255
+        ],
+        "colorButton_OtlColor": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "comboBox_FontFamily": "sans-serif",
+        "comboBox_ObjectType": "Polygon",
+        "comboBox_altitudeMode": null,
+        "comboEdit_Color": {
+          "comboData": 1,
+          "comboText": "Feature style",
+          "editText": "",
+          "type": 2
+        },
+        "comboEdit_Color2": {
+          "comboData": null,
+          "comboText": "None",
+          "editText": "",
+          "type": 7
+        },
+        "comboEdit_FilePath": {},
+        "comboEdit_Opacity": {
+          "comboData": 1,
+          "comboText": "Feature style",
+          "editText": "",
+          "type": 5
+        },
+        "comboEdit_altitude2": {},
+        "expression_Label": "\"fid\"",
+        "fieldExpressionWidget_altitude": "0",
+        "geomWidget0": {},
+        "geomWidget1": {},
+        "geomWidget2": {},
+        "geomWidget3": {},
+        "geomWidget4": {},
+        "groupBox_Background": true,
+        "groupBox_Conn": true,
+        "labelHeightWidget": {
+          "comboData": 1,
+          "comboText": "Relative",
+          "editText": "50",
+          "type": 6
+        },
+        "lineEdit_Name": "",
+        "mtlWidget0": {},
+        "mtlWidget1": {},
+        "radioButton_Expression": true,
+        "radioButton_IntersectingFeatures": true,
+        "slider_FontSize": 3
+      },
+      "visible": false
+    },
+    {
+      "geomType": 1,
+      "layerId": "export_033c595d_98fb_4472_8b4f_465595d74bda",
+      "name": "export_punti",
+      "properties": {},
+      "visible": false
+    },
+    {
+      "geomType": 2,
+      "layerId": "export_5a2ac075_b381_41e2_9157_b0b9e67ecc4e",
+      "name": "export_strade",
+      "properties": {},
+      "visible": false
+    },
+    {
+      "geomType": 3,
+      "layerId": "export_0b3168a8_3403_44b5_a3de_193f1a3cc16b",
+      "name": "export_edifici",
+      "properties": {},
+      "visible": false
+    },
+    {
+      "geomType": 0,
+      "layerId": "fusione_dsmLast_2dc1dcd5_283a_4e70_b960_7c2b9be2067f",
+      "name": "fusione_dsmLast",
+      "properties": {
+        "checkBox_Clickable": true,
+        "checkBox_Clip": false,
+        "checkBox_Frame": false,
+        "checkBox_Sides": false,
+        "checkBox_Tiles": false,
+        "checkBox_Visible": true,
+        "checkBox_Wireframe": false,
+        "colorButton_Edge": [
+          0,
+          0,
+          0,
+          255
+        ],
+        "colorButton_Side": [
+          204,
+          187,
+          170,
+          255
+        ],
+        "colorButton_Wireframe": [
+          0,
+          0,
+          0,
+          255
+        ],
+        "comboBox_ClipLayer": "edifici_clip_8e99e098_ee05_4e7d_bb59_9701c559814f",
+        "horizontalSlider_DEMSize": 2,
+        "lineEdit_Bottom": "0",
+        "lineEdit_Name": "",
+        "materials": [
+          {
+            "id": "83630033",
+            "name": "map (canvas)",
+            "properties": {},
+            "type": 0
+          }
+        ],
+        "mtlId": "83630033",
+        "spinBox_Roughening": 1,
+        "spinBox_Size": 3
+      },
+      "visible": true
+    },
+    {
+      "geomType": 0,
+      "layerId": "campania_145_D40761479_0101_DSMLast_dcaa610d_6249_4d3d_9d82_c5e7efdef20c",
+      "name": "università_area_sud_est",
+      "properties": {
+        "checkBox_Clickable": true,
+        "checkBox_Clip": false,
+        "checkBox_Frame": false,
+        "checkBox_Sides": false,
+        "checkBox_Tiles": false,
+        "checkBox_Visible": true,
+        "checkBox_Wireframe": false,
+        "colorButton_Edge": [
+          0,
+          0,
+          0,
+          255
+        ],
+        "colorButton_Side": [
+          204,
+          187,
+          170,
+          255
+        ],
+        "colorButton_Wireframe": [
+          0,
+          0,
+          0,
+          255
+        ],
+        "comboBox_ClipLayer": "edifici_clip_8e99e098_ee05_4e7d_bb59_9701c559814f",
+        "horizontalSlider_DEMSize": 2,
+        "lineEdit_Bottom": "0",
+        "lineEdit_Name": "",
+        "materials": [
+          {
+            "id": "8b38e3c7",
+            "name": "map (canvas)",
+            "properties": {},
+            "type": 0
+          }
+        ],
+        "mtlId": "8b38e3c7",
+        "spinBox_Roughening": 1,
+        "spinBox_Size": 3
+      },
+      "visible": false
+    },
+    {
+      "geomType": 0,
+      "layerId": "campania_145_D40761478_0101_DSMLast_83c51b1d_6174_43df_a00c_700e63489e1b",
+      "name": "università_area_sud_ovest",
+      "properties": {},
+      "visible": false
+    },
+    {
+      "geomType": 0,
+      "layerId": "campania_145_D40771479_0101_DSMLast_6d2e9ba8_30a7_4986_bb51_5b49bd48eecd",
+      "name": "universita_area_nord_est",
+      "properties": {},
+      "visible": false
+    },
+    {
+      "geomType": 0,
+      "layerId": "campania_145_D40771478_0101_DSMLast_4cd907f0_925a_4a25_be15_682fbc4dc76c",
+      "name": "università_area_nord_ovest",
+      "properties": {},
+      "visible": false
+    },
+    {
+      "geomType": 3,
+      "layerId": "Area_Unisa_Poligono_f22d326c_3a7d_439f_a636_49c91dd20796",
+      "name": "Area_Unisa_Poligono",
+      "properties": {},
+      "visible": false
+    },
+    {
+      "geomType": 3,
+      "layerId": "Area_Unisa_Poligono_8652b7dc_5b26_426d_92dd_cae7661997ce",
+      "name": "Area_Unisa_Poligono copia",
+      "properties": {},
+      "visible": false
+    },
+    {
+      "geomType": 0,
+      "layerId": "fp:3c9120d6",
+      "name": "Flat Plane",
+      "properties": {
+        "checkBox_Clickable": true,
+        "checkBox_Frame": false,
+        "checkBox_Sides": false,
+        "checkBox_Tiles": false,
+        "checkBox_Visible": true,
+        "checkBox_Wireframe": false,
+        "colorButton_Edge": [
+          0,
+          0,
+          0,
+          255
+        ],
+        "colorButton_Side": [
+          204,
+          187,
+          170,
+          255
+        ],
+        "colorButton_Wireframe": [
+          0,
+          0,
+          0,
+          255
+        ],
+        "lineEdit_Altitude": "0",
+        "lineEdit_Bottom": "0",
+        "lineEdit_Name": "",
+        "materials": [
+          {
+            "id": "eefeb5b7",
+            "name": "map (canvas)",
+            "properties": {},
+            "type": 0
+          }
+        ],
+        "mtlId": "eefeb5b7",
+        "spinBox_Size": 3
+      },
+      "visible": false
+    }
+  ],
+  "Version": 20800
+}

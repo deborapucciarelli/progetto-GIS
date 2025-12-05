@@ -1,0 +1,13 @@
+<PAMDataset>
+  <PAMRasterBand band="1">
+    <Description>primavera_Mezzogiorno@PERMANENT</Description>
+    <Metadata>
+      <MDI key="STATISTICS_APPROXIMATE">YES</MDI>
+      <MDI key="STATISTICS_MINIMUM">0</MDI>
+      <MDI key="STATISTICS_MAXIMUM">716.10845947266</MDI>
+      <MDI key="STATISTICS_MEAN">639.46800374083</MDI>
+      <MDI key="STATISTICS_STDDEV">220.10886606713</MDI>
+      <MDI key="STATISTICS_VALID_PERCENT">60.46</MDI>
+    </Metadata>
+  </PAMRasterBand>
+</PAMDataset>

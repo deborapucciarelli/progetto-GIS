@@ -1,0 +1,13 @@
+<PAMDataset>
+  <PAMRasterBand band="1">
+    <Description>autunno_Sera@PERMANENT</Description>
+    <Metadata>
+      <MDI key="STATISTICS_APPROXIMATE">YES</MDI>
+      <MDI key="STATISTICS_MINIMUM">0</MDI>
+      <MDI key="STATISTICS_MAXIMUM">123.47853851318</MDI>
+      <MDI key="STATISTICS_MEAN">68.643991435897</MDI>
+      <MDI key="STATISTICS_STDDEV">61.189684695491</MDI>
+      <MDI key="STATISTICS_VALID_PERCENT">60.46</MDI>
+    </Metadata>
+  </PAMRasterBand>
+</PAMDataset>
