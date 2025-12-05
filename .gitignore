@@ -6,3 +6,5 @@ dist/
 # File temporanei
 *.log
 *.tmp
+
+backend/venv/
