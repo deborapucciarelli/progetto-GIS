@@ -1,7 +1,6 @@
-
 import geopandas as gpd
 from shapely.geometry import LineString, Point
-from shapely.ops import linemerge
+from shapely.ops import linemerge, snap
 from scipy.spatial import cKDTree
 import networkx as nx
 from pyproj import Transformer
@@ -54,16 +53,40 @@ lines_gdf = lines_gdf.explode(index_parts=False).reset_index(drop=True)
 print("Linee create:", len(lines_gdf))
 print(lines_gdf.geometry.length.describe())
 
+# ---------- SNAP DELLE LINEE (nuovo blocco) ----------
+print("Eseguo snap delle linee per eliminare gap...")
+tolerance = 0.5  # Mezzo metro
+union = lines_gdf.unary_union
+
+snapped = []
+for geom in lines_gdf.geometry:
+    snapped.append(snap(geom, union, tolerance))
+
+lines_gdf['geometry'] = snapped
+print("Snap completato.")
+
 # ---------- Costruzione grafo ----------
 G = nx.DiGraph()
+
 for _, row in lines_gdf.iterrows():
     coords = list(row.geometry.coords)
+
     for a, b in zip(coords[:-1], coords[1:]):
-        u = (round(a[0],3), round(a[1],3))
-        v = (round(b[0],3), round(b[1],3))
+        # ❗ TOLTO round(...,3) PER RISOLVERE I BIVI
+        u = (a[0], a[1])
+        v = (b[0], b[1])
+
         length = Point(u).distance(Point(v))
-        G.add_edge(u, v, length=length, costo_sole=row["costo_Sole"], costo_ombra=row["costo_Ombra"], geometry=LineString([u,v]))
-        G.add_edge(v, u, length=length, costo_sole=row["costo_Sole"], costo_ombra=row["costo_Ombra"], geometry=LineString([v,u]))
+
+        G.add_edge(u, v, length=length, 
+                   costo_sole=row["costo_Sole"], 
+                   costo_ombra=row["costo_Ombra"],
+                   geometry=LineString([u, v]))
+
+        G.add_edge(v, u, length=length, 
+                   costo_sole=row["costo_Sole"], 
+                   costo_ombra=row["costo_Ombra"],
+                   geometry=LineString([v, u]))
 
 nodes = list(G.nodes())
 print("Grafo costruito:", G.number_of_nodes(), "nodi,", G.number_of_edges(), "archi")
@@ -72,67 +95,74 @@ print("Grafo costruito:", G.number_of_nodes(), "nodi,", G.number_of_edges(), "ar
 tree = cKDTree(nodes)
 transformer = Transformer.from_crs("EPSG:4326", target_crs, always_xy=True)
 
-# ---------- Funzione helper: aggancio al segmento più vicino ----------
+# ---------- Funzione helper ----------
 def snap_to_graph(pt):
-    # pt in CRS target
     min_dist = np.inf
     closest_point = None
     closest_edge = None
-    for u,v,data in G.edges(data=True):
+    for u, v, data in G.edges(data=True):
         line = data['geometry']
         proj_pt = line.interpolate(line.project(Point(pt)))
         dist = Point(pt).distance(proj_pt)
         if dist < min_dist:
             min_dist = dist
             closest_point = (proj_pt.x, proj_pt.y)
-            closest_edge = (u,v)
+            closest_edge = (u, v)
     return closest_point, closest_edge
 
 # ---------- Calcolo percorso ----------
 def compute_path(start_pt, end_pt, weight):
-    # Trasforma coordinate cliccate in CRS target
     sx, sy = transformer.transform(start_pt[0], start_pt[1])
     ex, ey = transformer.transform(end_pt[0], end_pt[1])
+
     start_node = (sx, sy)
     end_node = (ex, ey)
 
-    # Aggancio start e end al segmento più vicino
     start_snap, _ = snap_to_graph(start_node)
     end_snap, _ = snap_to_graph(end_node)
 
-    # Aggiungi nodi temporanei
     G.add_node(start_snap)
     G.add_node(end_snap)
 
-    # Collega start_snap ai due estremi del segmento più vicino
+    # Start snap → edge
     _, start_edge = snap_to_graph(start_snap)
     if start_edge:
-        u,v = start_edge
-        G.add_edge(start_snap, u, length=Point(start_snap).distance(Point(u)), costo_sole=0, costo_ombra=0, geometry=LineString([start_snap,u]))
-        G.add_edge(start_snap, v, length=Point(start_snap).distance(Point(v)), costo_sole=0, costo_ombra=0, geometry=LineString([start_snap,v]))
-        G.add_edge(u, start_snap, length=Point(start_snap).distance(Point(u)), costo_sole=0, costo_ombra=0, geometry=LineString([u,start_snap]))
-        G.add_edge(v, start_snap, length=Point(start_snap).distance(Point(v)), costo_sole=0, costo_ombra=0, geometry=LineString([v,start_snap]))
+        u, v = start_edge
+        G.add_edge(start_snap, u, length=Point(start_snap).distance(Point(u)),
+                   costo_sole=0, costo_ombra=0, geometry=LineString([start_snap, u]))
+        G.add_edge(start_snap, v, length=Point(start_snap).distance(Point(v)),
+                   costo_sole=0, costo_ombra=0, geometry=LineString([start_snap, v]))
+        G.add_edge(u, start_snap, length=Point(start_snap).distance(Point(u)),
+                   costo_sole=0, costo_ombra=0, geometry=LineString([u, start_snap]))
+        G.add_edge(v, start_snap, length=Point(start_snap).distance(Point(v)),
+                   costo_sole=0, costo_ombra=0, geometry=LineString([v, start_snap]))
 
-    # Collega end_snap ai due estremi del segmento più vicino
+    # End snap → edge
     _, end_edge = snap_to_graph(end_snap)
     if end_edge:
-        u,v = end_edge
-        G.add_edge(end_snap, u, length=Point(end_snap).distance(Point(u)), costo_sole=0, costo_ombra=0, geometry=LineString([end_snap,u]))
-        G.add_edge(end_snap, v, length=Point(end_snap).distance(Point(v)), costo_sole=0, costo_ombra=0, geometry=LineString([end_snap,v]))
-        G.add_edge(u, end_snap, length=Point(end_snap).distance(Point(u)), costo_sole=0, costo_ombra=0, geometry=LineString([u,end_snap]))
-        G.add_edge(v, end_snap, length=Point(end_snap).distance(Point(v)), costo_sole=0, costo_ombra=0, geometry=LineString([v,end_snap]))
+        u, v = end_edge
+        G.add_edge(end_snap, u, length=Point(end_snap).distance(Point(u)),
+                   costo_sole=0, costo_ombra=0, geometry=LineString([end_snap, u]))
+        G.add_edge(end_snap, v, length=Point(end_snap).distance(Point(v)),
+                   costo_sole=0, costo_ombra=0, geometry=LineString([end_snap, v]))
+        G.add_edge(u, end_snap, length=Point(end_snap).distance(Point(u)),
+                   costo_sole=0, costo_ombra=0, geometry=LineString([u, end_snap]))
+        G.add_edge(v, end_snap, length=Point(end_snap).distance(Point(v)),
+                   costo_sole=0, costo_ombra=0, geometry=LineString([v, end_snap]))
 
-    # Calcolo percorso
     try:
         path_nodes = nx.shortest_path(G, source=start_snap, target=end_snap, weight=weight)
         print(f"Percorso trovato con {weight}: {len(path_nodes)} nodi")
-        segs = [G[u][v]['geometry'] for u,v in zip(path_nodes[:-1], path_nodes[1:])]
+
+        segs = [G[u][v]['geometry'] for u, v in zip(path_nodes[:-1], path_nodes[1:])]
         merged = linemerge(segs)
         gdf = gpd.GeoDataFrame(geometry=[merged], crs=target_crs).to_crs("EPSG:4326")
-        # Rimuovi nodi temporanei
+
         G.remove_node(start_snap)
         G.remove_node(end_snap)
+
         return json.loads(gdf.to_json())
+
     except nx.NetworkXNoPath:
         print(f"⚠️ Nessun percorso trovato con {weight}")
         G.remove_node(start_snap)
