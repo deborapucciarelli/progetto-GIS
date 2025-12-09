@@ -9,3 +9,5 @@ dist/
 
 backend/venv/
 venv/
+
+frontend/package-lock.json
