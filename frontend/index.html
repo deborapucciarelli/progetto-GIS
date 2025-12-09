@@ -7,28 +7,24 @@
   <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
-  <h2>Calcolo Percorsi Ombra/Sole</h2>
+  <h2>UNISA SolarMap</h2>
 
   <div id="controls">
     <label for="stagione">Stagione:</label>
     <select id="stagione">
-      <option value="primavera">Primavera</option>
-      <option value="estate">Estate</option>
-      <option value="autunno">Autunno</option>
-      <option value="inverno">Inverno</option>
+      <option value="primavera">🌸 Primavera</option>
+      <option value="estate">🌊 Estate</option>
+      <option value="autunno">🍂 Autunno</option>
+      <option value="inverno">❄️ Inverno</option>
     </select>
 
     <label for="fascia">Fascia oraria:</label>
-    <select id="fascia">
-      <option value="mattina">Mattina</option>
-      <option value="mezzogiorno">Mezzogiorno</option>
-      <option value="sera">Sera</option>
-    </select>
+    <select id="fascia"></select>
 
     <label for="tipo">Percorso:</label>
     <select id="tipo">
-      <option value="ombra">Ombra</option>
-      <option value="sole">Sole</option>
+      <option value="ombra">🌑 Ombra</option>
+      <option value="sole">☀️ Sole</option>
     </select>
 
     <button id="loadPath">Mostra Percorso</button>
@@ -37,6 +33,47 @@
   <div id="map"></div>
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const stagioneSelect = document.getElementById("stagione");
+    const fasciaSelect = document.getElementById("fascia");
+
+    // fasce disponibili
+    const fasceComplete = [
+      { value: "mattina", text: "Mattina" },
+      { value: "mezzogiorno", text: "Mezzogiorno" },
+      { value: "sera", text: "Sera" }
+    ];
+
+    const fasceInverno = [
+      { value: "mattina", text: "Mattina" },
+      { value: "mezzogiorno", text: "Mezzogiorno" }
+    ];
+
+    function aggiornaFasce() {
+      const stagione = stagioneSelect.value;
+
+      // scegli set corretto
+      const fasce = stagione === "inverno" ? fasceInverno : fasceComplete;
+
+      // svuota select
+      fasciaSelect.innerHTML = "";
+
+      // ricostruisci opzioni
+      fasce.forEach(f => {
+        const opt = document.createElement("option");
+        opt.value = f.value;
+        opt.textContent = f.text;
+        fasciaSelect.appendChild(opt);
+      });
+    }
+
+    // aggiorna al caricamento pagina
+    aggiornaFasce();
+
+    // aggiorna al cambio stagione
+    stagioneSelect.addEventListener("change", aggiornaFasce);
+  </script>
+
   <script src="js/script.js"></script>
 </body>
 </html>
