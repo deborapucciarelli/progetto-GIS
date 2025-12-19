@@ -22,9 +22,6 @@ def load_layer(stagione, fascia):
     print(">>> Carico:", fp)
 
     layer = gpd.read_file(fp)
-
-    # Normalizzazione semplice dei valori originali
-    layer["costo_Ombra"] = layer["costo_Ombra"] * 5
     layer = layer.to_crs("EPSG:25833")
 
     return layer
